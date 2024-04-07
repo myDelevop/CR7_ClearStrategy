@@ -1,0 +1,15 @@
+1 - first column without name, I suppose it is an ID given that it is unique
+2 - duplicate columns: remaining_min_1 smallint, power_of_shot_1 tinyint, knockout_match_1 tinyint, remaining_sec_1 smallint, distance_of_shot_1 tinyint
+
+	- Be careful for the duplicate columns! One strategy to manage missing values is to get the value from the first column (for example remaining_min)
+	  and if it is a null take the value from the second column (for example remaining_min_1). But we decided to adopt another strategy for missing 
+	  values given that it seems that the duplicated column doesn't contain the right value. 
+	  For example
+
+3 - the column lat/lng contains commas (csv separator) and to resolve it is possible to use FIELD_OPTIONALLY_ENCLOSED_BY = '"' during the creation of file format
+4 - be careful to game_season "2000-01" considered as a string but should be a date
+5 - missing values
+	
+	- ID, OK
+	- MATCH_EVENT_ID, we can't do nothing given that is an FK
+	- LOCATION_X, LOCATION_Y filled with 0
